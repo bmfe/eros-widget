@@ -1,0 +1,17 @@
+{
+  "name": "eros-widget",
+  "version": "1.0.0",
+  "description": "eros widget",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eros"
+  ],
+  "author": "Zero",
+  "license": "ISC",
+  "devDependencies": {
+    "lodash": "^4.17.5"
+  }
+}
