@@ -1,5 +1,7 @@
 
 // 配置方法
+import './src/mixins.js'
+
 import './src/font.js'
 // 弹窗
 import './src/notice.js'
