@@ -17,68 +17,68 @@ import _isNumber from 'lodash/isNumber'
 // 客户端默认打开页面的动画
 export const DEFAULT_ANIMATETYPE = 'PUSH'
 
-var RouterCycle = {
-    // 页面将要出现
-    viewWillAppear: [],
-    // 页面已经出现
-    viewDidAppear: [],
-    // 页面被拿出栈时即将展示
-    viewWillBackAppear: [],
-    // 页面被拿出栈时已经展示
-    viewDidBackAppear: [],
-    // 页面将要放在栈中
-    viewWillDisappear: [],
-    // 页面已经放在栈中
-    viewDidDisappear: []
-}
+// var RouterCycle = {
+//     // 页面将要出现
+//     viewWillAppear: [],
+//     // 页面已经出现
+//     viewDidAppear: [],
+//     // 页面被拿出栈时即将展示
+//     viewWillBackAppear: [],
+//     // 页面被拿出栈时已经展示
+//     viewDidBackAppear: [],
+//     // 页面将要放在栈中
+//     viewWillDisappear: [],
+//     // 页面已经放在栈中
+//     viewDidDisappear: []
+// }
 
-globalEvent.addEventListener('viewWillAppear', function (options) {
-    if (options.type === 'open' || options.type === 'refresh') {
-        router.getParams((params) => {
-            RouterCycle.viewWillAppear.map((item) => {
-                item(params, options)
-            })
-        })
-    } else if (options.type === 'back') {
-        storage.getData('router.backParams', ({ status, errorMsg, data }) => {
-            const result = status === 0 ? JSON.parse(data) : ''
-            RouterCycle.viewWillBackAppear.map((item) => {
-                item(result, options)
-            })
-        })
-    }
-})
+// globalEvent.addEventListener('viewWillAppear', function (options) {
+//     if (options.type === 'open' || options.type === 'refresh') {
+//         router.getParams((params) => {
+//             RouterCycle.viewWillAppear.map((item) => {
+//                 item(params, options)
+//             })
+//         })
+//     } else if (options.type === 'back') {
+//         storage.getData('router.backParams', ({ status, errorMsg, data }) => {
+//             const result = status === 0 ? JSON.parse(data) : ''
+//             RouterCycle.viewWillBackAppear.map((item) => {
+//                 item(result, options)
+//             })
+//         })
+//     }
+// })
 
-globalEvent.addEventListener('viewDidAppear', function (options) {
-    if (options.type === 'open' || options.type === 'refresh') {
-        router.getParams((params) => {
-            RouterCycle.viewDidAppear.map((item) => {
-                item(params, options)
-            })
-        })
-    } else if (options.type === 'back') {
-        storage.getData('router.backParams', ({ status, errorMsg, data }) => {
-            const result = status === 0 ? JSON.parse(data) : ''
-            RouterCycle.viewDidBackAppear.map((item) => {
-                item(result, options)
-            })
-            storage.deleteData('router.backParams')
-        })
-    }
-})
+// globalEvent.addEventListener('viewDidAppear', function (options) {
+//     if (options.type === 'open' || options.type === 'refresh') {
+//         router.getParams((params) => {
+//             RouterCycle.viewDidAppear.map((item) => {
+//                 item(params, options)
+//             })
+//         })
+//     } else if (options.type === 'back') {
+//         storage.getData('router.backParams', ({ status, errorMsg, data }) => {
+//             const result = status === 0 ? JSON.parse(data) : ''
+//             RouterCycle.viewDidBackAppear.map((item) => {
+//                 item(result, options)
+//             })
+//             storage.deleteData('router.backParams')
+//         })
+//     }
+// })
 
-globalEvent.addEventListener('viewWillDisappear', function (options) {
-    modal.hideLoading()
-    RouterCycle.viewWillDisappear.map((item) => {
-        item(options)
-    })
-})
+// globalEvent.addEventListener('viewWillDisappear', function (options) {
+//     modal.hideLoading()
+//     RouterCycle.viewWillDisappear.map((item) => {
+//         item(options)
+//     })
+// })
 
-globalEvent.addEventListener('viewDidDisappear', function (options) {
-    RouterCycle.viewDidDisappear.map((item) => {
-        item(options)
-    })
-})
+// globalEvent.addEventListener('viewDidDisappear', function (options) {
+//     RouterCycle.viewDidDisappear.map((item) => {
+//         item(options)
+//     })
+// })
 
 export default class Router {
     constructor ({ routes }) {
@@ -87,19 +87,19 @@ export default class Router {
     }
     install (Vue, options) {
         const self = this
-        Vue.mixin({
-            beforeCreate () {
-                if (this.$options.bmRouter) {
-                    var bmRouter = this.$options.bmRouter
-                    for (var i in bmRouter) {
-                        if (!RouterCycle[i]) {
-                            RouterCycle[i] = []
-                        }
-                        RouterCycle[i].push(bmRouter[i].bind(this))
-                    }
-                }
-            }
-        })
+        // Vue.mixin({
+        //     beforeCreate () {
+        //         if (this.$options.bmRouter) {
+        //             var bmRouter = this.$options.bmRouter
+        //             for (var i in bmRouter) {
+        //                 if (!RouterCycle[i]) {
+        //                     RouterCycle[i] = []
+        //                 }
+        //                 RouterCycle[i].push(bmRouter[i].bind(this))
+        //             }
+        //         }
+        //     }
+        // })
         Vue.prototype.$router = {
             open (options) {
                 options = options || {}
