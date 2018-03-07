@@ -14,9 +14,20 @@ const modal = weex.requireModule('bmModal')
 const Mixins = Object.create(null)
 const GLOBAL_EVENTS = Object.create(null)
 
+
 class EventsMaker {
     constructor(events) {
-        events && events.length && events.map(event => {
+        let _events = events
+        if(!events || !events.length) return
+        const beforeAppearPosition = _events.indexOf('beforeAppear')
+        const beforeBackAppearPosition = _events.indexOf('beforeBackAppear')
+        if(beforeAppearPosition > -1 && beforeBackAppearPosition > -1) _events.splice(beforeBackAppearPosition, 1)
+        
+        const appearedPosition = _events.indexOf('appeared')
+        const backAppearedPosition = _events.indexOf('backAppeared')
+        if(appearedPosition > -1 && backAppearedPosition > -1) _events.splice(backAppearedPosition, 1)
+        
+        _events.map(event => {
             this[`${event}Maker`]()
         })
     }

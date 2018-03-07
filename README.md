@@ -143,6 +143,9 @@ new ErosWidget(options)
 > welcome your pull request! eros loves you.
 
 ## Records
+# 1.0.1-beta.1
+* [bugfix] 修复全局事件注册2次的bug
+
 # 1.0.1
 生命周期，自定义事件均做调整，如果不更改，请不要升级到 `1.0.1`。
 * `bmRouter` 变更为 `eros`
