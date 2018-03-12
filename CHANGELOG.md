@@ -1,3 +1,6 @@
+# 1.0.1-beta.2
+* [bugfix] beforeAppear 和 beforeBackAppear 另个页面返回或者结束后仍会获取到上次的$router.setBackParams数据的 bug.
+
 # 1.0.1-beta.1
 * [bugfix] 修复全局事件注册2次的bug
 

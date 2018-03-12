@@ -52,6 +52,7 @@ class EventsMaker {
                     _isArray(GLOBAL_EVENTS['beforeBackAppear']) &&GLOBAL_EVENTS['beforeBackAppear'].map((item) => {
                         item(result, options)
                     })
+                    storage.deleteData('router.backParams')
                 })
             }
         })
