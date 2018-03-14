@@ -3,7 +3,7 @@
 * [bugfix] 父子组件同时注册生命周期，执行两次的 bug
 
 # 1.0.1-beta.3/4/5
-* [add] support bindindx.
+* [add] support bindingx.
 
 # 1.0.1-beta.2
 * [bugfix] beforeAppear 和 beforeBackAppear 另个页面返回或者结束后仍会获取到上次的$router.setBackParams数据的 bug.
