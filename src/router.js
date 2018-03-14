@@ -101,22 +101,22 @@ export default class Router {
         //     }
         // })
         Vue.prototype.$router = {
-            open (options) {
-                options = options || {}
+            open (options = {}) {
                 const currentPageInfo = this.getUrl(options.name)
                 if (!currentPageInfo || !currentPageInfo.url) return
-                options.canBack = _isUndefined(options.canBack) ? true : options.canBack
                 return new Promise((resolve, reject) => {
                     let preOptions = {
                         url: currentPageInfo.url,
                         type: options.type || DEFAULT_ANIMATETYPE,
                         params: options.params || {},
-                        canBack: !!options.canBack,
+                        canBack: _isUndefined(options.canBack) || options.canBack,
+                        gesBack: _isUndefined(options.gesBack) || options.gesBack,
                         navShow: options.navShow || !!currentPageInfo.title,
                         navTitle: options.navTitle || currentPageInfo.title,
                         isRunBackCallback: isFunction(options.backCallback)
                     }
                     
+                    if(!!options.statusBarStyle)  preOptions.statusBarStyle = options.statusBarStyle
                     if(!!options.statusBarStyle)  preOptions.statusBarStyle = options.statusBarStyle
                     
                     router.open(preOptions, (data) => {
@@ -126,8 +126,7 @@ export default class Router {
                     })
                 })
             },
-            back (options) {
-                options = options || {}
+            back (options = {}) {
                 return new Promise((resolve, reject) => {
                     router.back({
                         type: options.type || DEFAULT_ANIMATETYPE,

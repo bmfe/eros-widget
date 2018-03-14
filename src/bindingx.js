@@ -1,41 +1,32 @@
 import { parse } from 'bindingx-parser'
+import _cloneDeep from 'lodash/cloneDeep'
 
 const WeexBinding = weex.requireModule('bindingx')
-const Bindingx = Object.create(null)
+const BindingxFunction = WeexBinding.bind
 
-Bindingx.install = (Vue, options) => {
-    Vue.prototype.$bindingx = {
-         bind(options, callback) {
-            if (!options) {
-                throw new Error('should pass options for binding')
-            }
+let _WeexBinding = _cloneDeep(WeexBinding)
+let Bindingx = Object.create(null)
 
-            options.exitExpression = formatExpression(options.exitExpression)
-
-            if (options.props) {
-                options.props.forEach((prop) => {
-                    prop.expression = formatExpression(prop.expression)
-                })
-            }
-
-            return WeexBinding.bind(options, options && options.eventType === 'timing' ? fixCallback(callback) : callback)
-        },
-
-        unbind (options) {
-            return WeexBinding.unbind(options)
-        },
-
-        unbindAll () {
-            return WeexBinding.unbindAll()
-        },
-
-        getComputedStyle (el) {
-            return WeexBinding.getComputedStyle(el)
-        }
+// 重写 bind 方法
+_WeexBinding.bind = (options, callback) => {
+    if (!options) {
+        throw new Error('should pass options for binding')
     }
+
+    options.exitExpression = formatExpression(options.exitExpression)
+
+    if (options.props) {
+        options.props.forEach((prop) => {
+            prop.expression = formatExpression(prop.expression)
+        })
+    }
+
+    return BindingxFunction(options, options && options.eventType === 'timing' ? fixCallback(callback) : callback)
 }
 
-
+Bindingx.install = (Vue, options) => {
+    Vue.prototype.$bindingx = _WeexBinding
+}
 
 const formatExpression = (expression) => {
     if (expression === undefined) return

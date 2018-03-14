@@ -1,9 +1,9 @@
+# 1.0.1-beta.6
+* [optimize] 重写 $bindingx 的引用方法，重写了 bind 方法，支持所有内部暴露出来的方法
+* [bugfix] 父子组件同时注册生命周期，执行两次的 bug
+
 # 1.0.1-beta.3/4/5
 * [add] support bindindx.
-    * this.$bind
-    * this.$unbind
-    * this.$unbindAll
-    * this.$getComputedStyle
 
 # 1.0.1-beta.2
 * [bugfix] beforeAppear 和 beforeBackAppear 另个页面返回或者结束后仍会获取到上次的$router.setBackParams数据的 bug.
