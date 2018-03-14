@@ -14,22 +14,27 @@ const modal = weex.requireModule('bmModal')
 const Mixins = Object.create(null)
 const GLOBAL_EVENTS = Object.create(null)
 
+let EventsMakerInstance = null
 
 class EventsMaker {
     constructor(events) {
-        let _events = events
-        if(!events || !events.length) return
-        const beforeAppearPosition = _events.indexOf('beforeAppear')
-        const beforeBackAppearPosition = _events.indexOf('beforeBackAppear')
-        if(beforeAppearPosition > -1 && beforeBackAppearPosition > -1) _events.splice(beforeBackAppearPosition, 1)
-        
-        const appearedPosition = _events.indexOf('appeared')
-        const backAppearedPosition = _events.indexOf('backAppeared')
-        if(appearedPosition > -1 && backAppearedPosition > -1) _events.splice(backAppearedPosition, 1)
-        
-        _events.map(event => {
-            this[`${event}Maker`]()
-        })
+        if (!EventsMakerInstance) {
+            let _events = events
+            if(!events || !events.length) return
+            const beforeAppearPosition = _events.indexOf('beforeAppear')
+            const beforeBackAppearPosition = _events.indexOf('beforeBackAppear')
+            if(beforeAppearPosition > -1 && beforeBackAppearPosition > -1) _events.splice(beforeBackAppearPosition, 1)
+            
+            const appearedPosition = _events.indexOf('appeared')
+            const backAppearedPosition = _events.indexOf('backAppeared')
+            if(appearedPosition > -1 && backAppearedPosition > -1) _events.splice(backAppearedPosition, 1)
+            
+            _events.map(event => {
+                this[`${event}Maker`]()
+            })
+            EventsMakerInstance = this
+        }
+        return EventsMakerInstance
     }
     pushMessageMaker() {
         globalEvent.addEventListener('pushMessage', (options) => {
@@ -52,6 +57,7 @@ class EventsMaker {
                     _isArray(GLOBAL_EVENTS['beforeBackAppear']) &&GLOBAL_EVENTS['beforeBackAppear'].map((item) => {
                         item(result, options)
                     })
+                    storage.deleteData('router.backParams')
                 })
             }
         })
