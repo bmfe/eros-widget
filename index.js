@@ -15,6 +15,8 @@ import './src/image.js'
 import './src/nav.js'
 // 支付相关
 import './src/pay.js'
+// bindingx
+import './src/bindingx.js'
 // 存储相关
 import './src/storage.js'
 // 全局事件

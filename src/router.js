@@ -107,16 +107,19 @@ export default class Router {
                 if (!currentPageInfo || !currentPageInfo.url) return
                 options.canBack = _isUndefined(options.canBack) ? true : options.canBack
                 return new Promise((resolve, reject) => {
-                    router.open({
+                    let preOptions = {
                         url: currentPageInfo.url,
                         type: options.type || DEFAULT_ANIMATETYPE,
                         params: options.params || {},
                         canBack: !!options.canBack,
                         navShow: options.navShow || !!currentPageInfo.title,
                         navTitle: options.navTitle || currentPageInfo.title,
-                        statusBarStyle: options.statusBarStyle || 'Default',
                         isRunBackCallback: isFunction(options.backCallback)
-                    }, (data) => {
+                    }
+                    
+                    if(!!options.statusBarStyle)  preOptions.statusBarStyle = options.statusBarStyle
+                    
+                    router.open(preOptions, (data) => {
                         if (isFunction(options.backCallback)) {
                             options.backCallback.call(this, data)
                         }
