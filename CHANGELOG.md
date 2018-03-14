@@ -9,10 +9,10 @@
 * [bugfix] beforeAppear 和 beforeBackAppear 另个页面返回或者结束后仍会获取到上次的$router.setBackParams数据的 bug.
 
 # 1.0.1-beta.1
-* [bugfix] 修复全局事件注册2次的bug
+* [bugfix] 修复全局事件注册2次的bug
 
 # 1.0.1
-生命周期，自定义事件均做调整，如果不更改，请不要升级到 `1.0.1`。
+生命周期，自定义事件均做调整，如果不更改，请不要升级到 `1.0.1`。
 * `bmRouter` 变更为 `eros`
 * 添加 `pushMessage`，可在页面中监听推送
 * 添加 `appActive`，可在页面中监听 app 切换到后台事件
