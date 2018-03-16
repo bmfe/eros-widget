@@ -5,6 +5,7 @@
  */
 
 import _isArray from 'lodash/isArray'
+import _clone from 'lodash/clone'
 
 const globalEvent = weex.requireModule('globalEvent')
 const storage = weex.requireModule('bmStorage')
@@ -19,7 +20,7 @@ let EventsMakerInstance = null
 class EventsMaker {
     constructor(events) {
         if (!EventsMakerInstance) {
-            let _events = events
+            let _events = _clone(events)
             if(!events || !events.length) return
             const beforeAppearPosition = _events.indexOf('beforeAppear')
             const beforeBackAppearPosition = _events.indexOf('beforeBackAppear')
@@ -69,14 +70,15 @@ class EventsMaker {
         globalEvent.addEventListener('viewDidAppear', (options) => {
             if (options.type === 'open' || options.type === 'refresh') {
                 router.getParams((params) => {
-                    _isArray(GLOBAL_EVENTS['appeared']) &&GLOBAL_EVENTS['appeared'].map((item) => {
+                    _isArray(GLOBAL_EVENTS['appeared']) && GLOBAL_EVENTS['appeared'].map((item) => {
                         item(params, options)
                     })
                 })
             } else if (options.type === 'back') {
                 storage.getData('router.backParams', ({ status, errorMsg, data }) => {
                     const result = status === 0 ? JSON.parse(data) : ''
-                    _isArray(GLOBAL_EVENTS['backAppeared']) &&GLOBAL_EVENTS['backAppeared'].map((item) => {
+                        console.log(GLOBAL_EVENTS)
+                    _isArray(GLOBAL_EVENTS['backAppeared']) && GLOBAL_EVENTS['backAppeared'].map((item) => {
                         item(result, options)
                     })
                     storage.deleteData('router.backParams')

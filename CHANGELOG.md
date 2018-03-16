@@ -1,3 +1,11 @@
+# 1.0.1-beta.8
+* [bugfix] backAppeared 和 beforeBackAppeared 不执行的问题
+* [bugfix] pickAndUpload 成功后成功回调进入 error 回调
+* [optimize] fetch method GET POST 大小写均可
+
+# 1.0.1-beta.7
+* [bugfix] $image.upload status code 判断失误
+
 # 1.0.1-beta.6
 * [optimize] 重写 $bindingx 的引用方法，重写了 bind 方法，支持所有内部暴露出来的方法
 * [bugfix] 父子组件同时注册生命周期，执行两次的 bug

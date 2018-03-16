@@ -27,7 +27,7 @@ Image.install = (Vue, options) => {
                 bmAxios.uploadImage({
                     url, params, header, images: source
                 }, ({ status, errorMsg, data }) => {
-                    status === 200 ? resolve(data) : reject({ status, errorMsg, data })
+                    status === 0 ? resolve(data) : reject({ status, errorMsg, data })
                 })
             })
         },
