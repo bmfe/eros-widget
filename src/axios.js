@@ -69,7 +69,7 @@ export default class Axios {
             bmAxios.fetch({
                 url: url || (self.baseUrl + requestPath),
                 data: data || {},
-                method: method || 'GET',
+                method: method && method.toUpperCase() || 'GET',
                 header: header || {},
                 timeout: self.timeout || 30000
             }, (resData) => {
