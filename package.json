@@ -1,6 +1,6 @@
 {
   "name": "eros-widget",
-  "version": "1.0.1-beta.8",
+  "version": "1.0.2-beta.1",
   "description": "eros widget",
   "main": "index.js",
   "scripts": {

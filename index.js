@@ -13,16 +13,16 @@ import './src/camera.js'
 import './src/image.js'
 // 设置导航
 import './src/nav.js'
-// 支付相关
-import './src/pay.js'
+// 支付相关(已抽离第三方插件)
+// import './src/pay.js'
 // bindingx
 import './src/bindingx.js'
 // 存储相关
 import './src/storage.js'
 // 全局事件
 import './src/events.js'
-// 分享
-import './src/share.js'
+// 分享(已抽离第三方插件)
+// import './src/share.js'
 // 工具方法
 import './src/tools.js'
 

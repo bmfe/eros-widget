@@ -1,3 +1,9 @@
+# 1.0.2
+* [remove] $tools.isInstallWXApp
+* [remove] $tools.getCid
+* [remove] $pay
+* [remove] $share
+
 # 1.0.1-beta.8
 * [bugfix] backAppeared 和 beforeBackAppeared 不执行的问题
 * [bugfix] pickAndUpload 成功后成功回调进入 error 回调
