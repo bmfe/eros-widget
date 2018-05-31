@@ -31,10 +31,7 @@ Tools.install = (Vue, options) => {
         // },
 
         networkStatus() {
-            return new Promise((resolve, reject) => {
-                const { status, errorMsg, data } = tools.networkStatus()
-                status === 0 ? resolve(data) : reject({ status, errorMsg, data })
-            })            
+             return tools.networkStatus()
         },
 
         watchNetworkStatus() {
@@ -47,6 +44,7 @@ Tools.install = (Vue, options) => {
 
         clearWatchNetworkStatus() {
             tools.clearWatchNetworkStatus()
+            return true
         },
         
         // 复制内容到剪切板
