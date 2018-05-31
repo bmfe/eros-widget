@@ -30,6 +30,25 @@ Tools.install = (Vue, options) => {
         //     })
         // },
 
+        networkStatus() {
+            return new Promise((resolve, reject) => {
+                const { status, errorMsg, data } = tools.networkStatus()
+                status === 0 ? resolve(data) : reject({ status, errorMsg, data })
+            })            
+        },
+
+        watchNetworkStatus() {
+            return new Promise((resolve, reject) => {
+                tools.watchNetworkStatus(({ status, errorMsg, data }) => {
+                    status === 0 ? resolve(data) : reject({ status, errorMsg, data })
+                })
+            })            
+        },
+
+        clearWatchNetworkStatus() {
+            tools.clearWatchNetworkStatus()
+        },
+        
         // 复制内容到剪切板
         copyString (string) {
             return new Promise((resolve, reject) => {

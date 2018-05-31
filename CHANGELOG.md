@@ -1,4 +1,6 @@
 # 1.0.2
+* [feature] $router.open support add background-color to set native background
+* [feature] $tools.networkStatus, $tools.watchNetworkStatus, $tools.clearWatchNetworkStatus
 * [remove] $tools.isInstallWXApp
 * [remove] $tools.getCid
 * [remove] $pay
