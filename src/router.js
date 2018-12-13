@@ -36,7 +36,7 @@ export default class Router {
                         params: options.params || {},
                         canBack: _isUndefined(options.canBack) || options.canBack,
                         gesBack: _isUndefined(options.gesBack) || options.gesBack,
-                        navShow: options.navShow || !!currentPageInfo.title,
+                        navShow: options.navShow != undefined ? options.navShow : !!currentPageInfo.title,
                         navTitle: options.navTitle || currentPageInfo.title,
                         isRunBackCallback: isFunction(options.backCallback)
                     }
